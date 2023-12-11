@@ -1,23 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <title>click fit</title>
-</head>
-<body>
-    <div class="container">
-        <div id="content"></div>
-        <div id="drag-drop-area" class="my-4">
-            <p>Drag & drop images or click to upload</p>
-        </div>
-    </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@uppy/core@1.6.0/dist/uppy.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@uppy/dashboard@1.6.0/dist/uppy.min.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <title>Click Fit</title>
+  </head>
+  <body>
+    <main class="container">
+      <section class="slider-section">
+        <!-- Slider main container -->
+        <div class="swiper">
+          <!-- Additional required wrapper -->
+          <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">
+              <img
+                src="https://img.freepik.com/free-vector/hand-drawn-soccer-facebook-cover-template_23-2149323642.jpg?w=1380&t=st=1702321745~exp=1702322345~hmac=fb16925880b8cc6864423cb0546b7d6f48b5a01ad5f5c33fd816071c71133210"
+                alt=""
+              />
+            </div>
+            <div class="swiper-slide">
+              <img
+                src="https://img.freepik.com/premium-vector/sports-background-vector-international-sports-day-illustration-graphic-design-decoration-gift-certificates-banners-flyer_7888-966.jpg?w=1480"
+                alt=""
+              />
+            </div>
+            <div class="swiper-slide">
+              <img
+                src="https://img.freepik.com/premium-vector/national-sports-background-national-sports-day-celebration-dynamic-background-with-footballers_758894-1113.jpg?w=1380"
+                alt=""
+              />
+            </div>
+            <div class="swiper-slide">
+              <img
+                src="https://img.freepik.com/premium-vector/traditional-european-soccer-ball-dynamic-abstract-background-with-copy-space-soccer-banner-vector-template_236756-91.jpg?w=1380"
+                alt=""
+              />
+            </div>
+          </div>
+
+          <div class="swiper-pagination"></div>
+        </div>
+      </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
