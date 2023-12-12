@@ -14,13 +14,72 @@ body {
   color: rgb(15 23 42);
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .hidden {
+    transition: all 1s;
+  }
+}
+
+.hidden {
+  opacity: 0;
+  filter: blur(5px);
+  transform: translateX(-100%);
+  transition: all 1.5s ease;
+}
+
+.animate-in {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateX(0);
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+}
+
 .container {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 4rem;
-  margin-top: 3rem;
+  gap: 2rem;
+}
+
+.first-container {
+  margin-top: 2rem;
+}
+
+.other-container {
+  justify-content: start;
+  align-items: center;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three columns with equal width */
+  gap: 2rem; /* Adjust the gap between items */
+}
+
+.single-product {
+  border: 1px solid #ddd; /* Border for visual separation */
+  padding: 2rem;
+  text-align: center;
+  border-radius: 15px;
+}
+
+#content {
+  border: 1px solid #ddd; /* Border for visual separation */
+  padding: 2rem;
+  text-align: center;
+  border-radius: 15px;
+  width: 50%;
+}
+
+.other-container h2 {
+  font-size: 2rem;
 }
 
 .hero-heading {
@@ -30,11 +89,11 @@ body {
   align-items: center;
 }
 
-.container h1 {
+.hero-heading h1 {
   font-size: 2.5rem;
 }
 
-.container p {
+.hero-heading p {
   font-size: 1.5rem;
 }
 
@@ -55,6 +114,7 @@ body {
   background-color: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px); /* Adjust the blur radius as needed */
   position: fixed;
+  z-index: 100;
   top: 0;
   left: 0;
   display: flex;
