@@ -31,7 +31,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 2rem;
+  gap: 4rem;
 }
 
 .container {
@@ -49,6 +49,10 @@ body {
   justify-content: center;
   align-items: center;
   gap: 2rem;
+}
+
+.mini-container h2 {
+  text-align: center;
 }
 
 .first-container {
@@ -114,22 +118,22 @@ body {
   font-size: 1.5rem;
 }
 
-.navbar-brand {
+.brand-logo {
   font-family: "Rubik Bubbles";
   font-size: 2rem;
   padding-left: 1rem;
 }
 
-.navbar {
+.navbar-large {
   width: 80rem;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
 }
 
-.navbar-bg {
+.navbar-fixed-top {
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(10px); /* Adjust the blur radius as needed */
   position: fixed;
   z-index: 100;
@@ -139,7 +143,7 @@ body {
   justify-content: space-between;
 }
 
-.navbar ul {
+.navbar-large ul {
   list-style-type: none;
   padding: 1rem 1rem 1rem 0;
   font-size: 1.3rem;
@@ -164,12 +168,12 @@ a {
   color: white;
 }
 
-.navbar li {
+.navbar-large li {
   padding-bottom: 0.5rem;
   position: relative;
 }
 
-.navbar li::after {
+.navbar-large li::after {
   content: "";
   position: absolute;
   background-color: #7743db;
@@ -181,15 +185,15 @@ a {
   transition: width 0.5s ease; /* Changed transition property for smoother animation */
 }
 
-.navbar li:hover::after {
+.navbar-large li:hover::after {
   width: 100%;
 }
 
-.navbar-toggler {
+.navbar-toggler-small {
   display: none;
 }
 
-.navbar-nav {
+.navbar-list {
   display: flex;
   gap: 3rem;
 }
@@ -213,7 +217,7 @@ a {
   text-align: center;
 }
 
-.sidebar {
+.nav-sidebar {
   display: none;
 }
 
@@ -226,6 +230,7 @@ a {
   align-items: center;
   height: 200px;
   cursor: pointer;
+  text-align: center;
 }
 
 .input-file {
@@ -258,6 +263,12 @@ a {
   display: none;
 }
 
+@media only screen and (max-width: 1301px) {
+  body {
+    margin: 0 1rem;
+  }
+}
+
 @media only screen and (max-width: 1025px) {
   .first-container {
     margin-top: 0;
@@ -268,14 +279,12 @@ a {
 
   .products {
     grid-template-columns: repeat(2, 1fr);
-    margin: 1rem;
   }
 }
 
 @media only screen and (max-width: 769px) {
   .products {
     grid-template-columns: repeat(1, 1fr);
-    margin: 1rem;
   }
 
   .first-container h1 {
@@ -304,7 +313,7 @@ a {
     gap: 2rem;
   }
 
-  .sidebar {
+  .nav-sidebar {
     display: block;
     position: fixed;
     top: 0;
@@ -324,11 +333,11 @@ a {
     align-items: center;
   }
 
-  .nav-item {
+  .mobile-nav-item {
     font-size: 1.5rem;
   }
 
-  .sidebar.active {
+  .nav-sidebar.active {
     right: 0;
   }
 
@@ -347,11 +356,11 @@ a {
     outline: inherit;
   }
 
-  .navbar-collapse {
+  .navbar-links {
     display: none;
   }
 
-  .navbar-toggler {
+  .navbar-toggler-small {
     display: block;
     position: absolute;
     right: 1rem;
@@ -360,15 +369,6 @@ a {
 
   .single-product {
     padding: 1rem;
-  }
-}
-
-@media only screen and (max-width: 481px) {
-  .first-container {
-    margin-top: 0;
-  }
-  .swiper {
-    height: 40vh;
   }
 
   #content {
@@ -379,8 +379,11 @@ a {
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .hidden {
-    transition: none;
+@media only screen and (max-width: 481px) {
+  .first-container {
+    margin-top: 0;
+  }
+  .swiper {
+    height: 40vh;
   }
 }

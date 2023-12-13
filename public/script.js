@@ -1,6 +1,10 @@
+// Checking if the DOM is ready
+
 $(document).ready(function () {
+  // Setting up intersection observer to know if user is intersecting with the section otherwies they'll be hidden
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
+      // If they're intersecting I'll add animate in class which will animate in the section
       entry.target.classList.toggle("animate-in", entry.isIntersecting);
     });
   });
@@ -40,7 +44,7 @@ $(document).ready(function () {
   }
 
   new Swiper(".swiper", {
-    // Optional parameters
+    // Parameters to configure swiper
     direction: "horizontal",
     loop: true,
     autoplay: {
@@ -56,9 +60,11 @@ $(document).ready(function () {
     },
   });
 
+  // Drag and drop area and image fileinput targeted here
   const dropArea = $("#dropArea");
   const fileInput = $("#image");
   let haveFile = false;
+  let image = null;
 
   // Implementing the drag and drop and upload functionality here
   dropArea
@@ -76,7 +82,7 @@ $(document).ready(function () {
     .on("dragleave dragend drop", function () {
       dropArea.removeClass("dragover");
     })
-    // After dropping off we wanna get the file uploaded
+    // After dropping off we wanna get the image uploaded
     .on("drop", function (e) {
       const files = e.originalEvent.dataTransfer.files;
       handleFiles(files);
@@ -95,7 +101,8 @@ $(document).ready(function () {
     if (files.length > 0) {
       // Setting variable to determine if we have an image uploaded or not
       haveFile = true;
-      // Set the text when a file is selected
+      image = files[0];
+      // Set the text when a image is selected to upload
       dropArea.html(
         `<span>${files[0].name}</span> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="x-icon"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>`
       );
@@ -106,30 +113,61 @@ $(document).ready(function () {
       });
       $(".x-icon").click(function (e) {
         e.stopPropagation();
-        // Clear the input value to allow selecting the same file again
+        // Clear the input value to allow selecting the same image again
         fileInput.val("");
-        // Update the text and styles after removing the file
+        // Update the text and styles after removing the image
         handleFiles([]);
       });
     } else {
       haveFile = false;
-      // Set the default text when no file is selected
-      dropArea.text("Drag and drop a file here or click to select one.");
+      // Set the default text when no image is selected
+      dropArea.text("Drag and drop an image here or click to select one.");
     }
   }
 
   $(".submit-btn").on("click", (e) => {
     e.preventDefault();
+
     if (haveFile) {
-      alert("Got the file");
-      fileInput.val("");
-      handleFiles([]);
+      // Create FormData object and append the image
+      const formData = new FormData();
+      formData.append("image", image);
+      // Checking if the uploaded file is indeed an image
+      const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
+      const selectedFileType = image.type;
+
+      if (allowedTypes.includes(selectedFileType)) {
+        // If file is an image, proceed with the upload
+        const formData = new FormData();
+        formData.append("image", image);
+
+        // Make an AJAX request to the server
+        $.ajax({
+          type: "POST",
+          url: "/upload-image",
+          data: formData,
+          contentType: false,
+          processData: false,
+          success: function (data) {
+            alert("Image uploaded successfully");
+            // Clearing the file input and handleFiles([]) here after successful submission
+            fileInput.value = "";
+            handleFiles([]);
+          },
+          error: function (error) {
+            console.error("Error uploading image:", error);
+            alert("Error uploading image");
+          },
+        });
+      } else {
+        alert("Please upload a valid image file (JPEG, PNG, GIF).");
+      }
     } else {
-      alert("Please select a file first.");
+      alert("Please select an image first.");
     }
   });
 
-  const toggleButton = $(".navbar-toggler");
+  const toggleButton = $(".navbar-toggler-small");
   const sidebar = $("#sidebar");
   const xIconSidebar = $(".x-icon-sidebar");
 
