@@ -1,6 +1,30 @@
 // Checking if the DOM is ready
 
 $(document).ready(function () {
+  // Function to add a new single product
+  function addProduct(imageSrc, productName, price, rating) {
+    const productHtml = `
+      <div class="single-product">
+        <img src="${imageSrc}" alt="" />
+        <div class="single-product-container">
+          <p>${productName}</p>
+          <span>${price}</span>
+          <span>${rating}</span>
+        </div>
+      </div>
+    `;
+    $(".products").append(productHtml);
+  }
+
+  // Use a loop to add the same product 15 times
+  for (let i = 0; i < 15; i++) {
+    addProduct(
+      "https://rukminim2.flixcart.com/image/832/832/kvtuxe80/shirt/v/p/a/l-t-chc-dustygreen-kibit-original-imag8n5ymxbghcav.jpeg?q=70",
+      "New Stylish Shirt",
+      "$50",
+      "5 Star rating"
+    );
+  }
   // Setting up intersection observer to know if user is intersecting with the section otherwies they'll be hidden
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
