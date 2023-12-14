@@ -15,12 +15,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-// Handle file upload
-app.post("/upload-image", upload.single("image"), (req, res) => {
-  // 'image' should match the name attribute of your file input in the form
-  res.send("File uploaded successfully!");
-});
-
 // Serve static files from the public folder
 app.use(express.static("public"));
 
@@ -29,11 +23,18 @@ app.get("/", (req, res) => {
   res.sendFile("./index.html");
 });
 
-app.post("/upload-image", (req, res) => {
-  res.sendFile("./index.html");
+// Handle file upload
+app.post("/upload-image", upload.single("image"), (req, res) => {
+  // 'image' should match the name attribute of your file input in the form
+  res.send("File uploaded successfully!");
 });
 
-// Start the server
+// Custom 404 route - should be placed after all other routes
+app.use((req, res) => {
+  res.sendFile("/public/error.html", { root: __dirname });
+});
+
+// Starting the server and listening to specific port
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });

@@ -263,6 +263,27 @@ a {
   display: none;
 }
 
+.error-main-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 6rem;
+}
+
+.error-main-container a {
+  color: blue;
+  text-decoration: underline;
+}
+
+.error-image {
+  max-width: 100%;
+  height: auto;
+}
+
 @media only screen and (max-width: 1301px) {
   body {
     margin: 0 1rem;
@@ -385,5 +406,9 @@ a {
   }
   .swiper {
     height: 40vh;
+  }
+
+  .error-main-container {
+    margin-top: 0;
   }
 }

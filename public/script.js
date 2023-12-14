@@ -178,4 +178,8 @@ $(document).ready(function () {
   xIconSidebar.click(function () {
     sidebar.removeClass("active");
   });
+  // Close sidebar when clicking on mobile nav items
+  $(".mobile-nav-item a").click(function () {
+    sidebar.removeClass("active");
+  });
 });
