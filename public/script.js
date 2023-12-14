@@ -25,7 +25,7 @@ $(document).ready(function () {
     },
   });
 
-  // Simulate an AJAX call to fetch image URLs
+  // Fetch image URLs to loop over them and display them
   const imageUrls = [
     "https://img.freepik.com/free-vector/hand-drawn-soccer-facebook-cover-template_23-2149323642.jpg?w=1380&t=st=1702321745~exp=1702322345~hmac=fb16925880b8cc6864423cb0546b7d6f48b5a01ad5f5c33fd816071c71133210",
     "https://img.freepik.com/premium-vector/sports-background-vector-international-sports-day-illustration-graphic-design-decoration-gift-certificates-banners-flyer_7888-966.jpg?w=1480",
