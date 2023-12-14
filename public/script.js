@@ -191,6 +191,8 @@ $(document).ready(function () {
     }
   });
 
+  //Sidebar toggling for mobile responsive menu
+
   const toggleButton = $(".navbar-toggler-small");
   const sidebar = $("#sidebar");
   const xIconSidebar = $(".x-icon-sidebar");
