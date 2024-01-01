@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../components/head.ejs") %>
+    <title>Home | Click Fit</title>
+  </head>
+  <body>
+    <header><%- include("../components/header.ejs") %></header>
+    <main class="main-container">
+      <section class="container first-container">
+        <div class="hero-heading">
+          <h1>Elevate Your Game with ClickFit</h1>
+          <p>Unleash Your Potential, Shop at ClickFit.</p>
+        </div>
+        <div class="slider-section">
+          <!-- Slider main container controlled with JavaScript -->
+          <div class="swiper">
+            <div class="swiper-wrapper"></div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </section>
+      <section class="container other-container hidden">
+        <h2>Featured Products</h2>
+        <!-- Generating all the products with javascript -->
+        <div class="products"></div>
+      </section>
+      <!-- <section class="container other-container hidden">
+        <div class="mini-container">
+          <h2>A random fact about Janury 30th</h2>
+          <p id="content"></p>
+        </div>
+        <div class="mini-container">
+          <h2>Image Uploader</h2>
+          <form class="image-form">
+            <input
+              type="file"
+              name="image"
+              id="image"
+              class="input-file"
+              accept="image/*"
+            />
+            <p class="drop-area" id="dropArea">
+              Drag and drop a file here or click to select one.
+            </p>
+            <button class="submit-btn">Upload</button>
+          </form>
+        </div>
+      </section> -->
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../script.js"></script>
+  </body>
+</html>

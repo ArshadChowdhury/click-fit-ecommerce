@@ -8,9 +8,12 @@ const contactPageRouter = require("./routes/Contact");
 const productsPageRouter = require("./routes/Products");
 const loginPageRouter = require("./routes/Login");
 const registerPageRouter = require("./routes/Register");
+const dashboardPageRouter = require("./routes/Dashboard");
+
+app.set("view engine", "ejs");
 
 // Serve static files from the public folder
-app.use(express.static("public"));
+app.use(express.static("views"));
 
 app.use("/", homePageRouter);
 
@@ -26,9 +29,11 @@ app.use("/register", registerPageRouter);
 
 app.use("/upload-image", uploadImageRouter);
 
-// Custom 404 route - should be placed after all other routes
+app.use("/dashboard", dashboardPageRouter);
+
+// Custom 404 route - placed after all other routes
 app.use((req, res) => {
-  res.sendFile("/public/error.html", { root: __dirname });
+  res.render("pages/error");
 });
 
 // Starting the server and listening to specific port

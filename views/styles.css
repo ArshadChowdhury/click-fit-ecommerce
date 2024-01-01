@@ -136,7 +136,8 @@ body {
 
 .navbar-fixed-top {
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
+  /* background-color: rgba(0, 0, 0, 0.4); */
+  background-color: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px); /* Adjust the blur radius as needed */
   position: fixed;
   z-index: 100;

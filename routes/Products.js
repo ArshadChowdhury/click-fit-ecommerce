@@ -3,7 +3,7 @@ const router = express.Router();
 
 // Defining a route for the root path
 router.get("/", (req, res) => {
-  res.sendFile("/public/products.html", { root: "./" });
+  res.render("pages/products");
 });
 
 module.exports = router;

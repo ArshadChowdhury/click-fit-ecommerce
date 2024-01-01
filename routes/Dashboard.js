@@ -3,7 +3,7 @@ const router = express.Router();
 
 // Defining a route for the root path
 router.get("/", (req, res) => {
-  res.render("pages/index");
+  res.render("pages/dashboard");
 });
 
 module.exports = router;
