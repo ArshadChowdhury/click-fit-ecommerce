@@ -31,6 +31,34 @@ $(document).ready(function () {
     });
   });
 
+  $("#loginForm").submit(function (event) {
+    // Prevent the default form submission
+    event.preventDefault();
+
+    // Gather form data
+    var formData = {
+      email: $("#email").val(),
+      password: $("#password").val(),
+    };
+
+    $.ajax({
+      type: "POST",
+      url: "/login",
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      data: JSON.stringify(formData),
+      success: function (response) {
+        console.log("Server response:", response);
+        if (response.user) {
+          // location.assign("/dashboard");
+        }
+      },
+      error: function (error) {
+        console.error("Error:", error);
+      },
+    });
+  });
+
   // Function to add a new single product
   function addProduct(imageSrc, productName, price, rating) {
     const productHtml = `
