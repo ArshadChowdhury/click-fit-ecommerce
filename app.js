@@ -9,6 +9,9 @@ const productsPageRouter = require("./routes/Products");
 const loginPageRouter = require("./routes/Login");
 const registerPageRouter = require("./routes/Register");
 const dashboardPageRouter = require("./routes/Dashboard");
+const errorPageRouter = require("./routes/Error");
+const logoutPageRouter = require("./routes/Logout");
+
 // getting-started.js
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
@@ -53,20 +56,10 @@ app.use("/upload-image", uploadImageRouter);
 
 app.use("/dashboard", dashboardPageRouter);
 
-// app.get("/set-cookies", (req, res) => {
-//   // res.setHeader("Set-Cookie", "newUser=true");
+app.use("/logout", logoutPageRouter);
 
-//   res.cookie("newUser", false);
-//   res.cookie("isEmployee", true);
-//   res.send("You got the cookies");
-// });
-
-// app.get("/read-cookies", () => {});
-
-// // Custom 404 route - placed after all other routes
-// app.use((req, res) => {
-//   res.render("pages/error");
-// });
+// Custom 404 route - placed after all other routes
+app.use(errorPageRouter);
 
 // Starting the server and listening to specific port
 app.listen(port, () => {

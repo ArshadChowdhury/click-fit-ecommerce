@@ -23,6 +23,10 @@ $(document).ready(function () {
         // console.log("Server response:", response);
         if (response.user) {
           location.assign("/dashboard");
+          $("#name").val("");
+          $("#email").val("");
+          $("#phone").val("");
+          $("#password").val("");
         }
       },
       error: function (error) {
@@ -50,7 +54,9 @@ $(document).ready(function () {
       success: function (response) {
         console.log("Server response:", response);
         if (response.user) {
-          // location.assign("/dashboard");
+          location.assign("/dashboard");
+          $("#email").val("");
+          $("#password").val("");
         }
       },
       error: function (error) {
