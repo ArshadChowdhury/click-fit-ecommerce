@@ -9,11 +9,61 @@ const productsPageRouter = require("./routes/Products");
 const loginPageRouter = require("./routes/Login");
 const registerPageRouter = require("./routes/Register");
 const dashboardPageRouter = require("./routes/Dashboard");
+// getting-started.js
+const mongoose = require("mongoose");
+const cookieParser = require("cookie-parser");
+
+// async function main() {
+//   try {
+//     await mongoose.connect(
+//       "mongodb+srv://projectaccount:JQndkpzB9yp3ARgM@cluster0.spd21.mongodb.net/?retryWrites=true&w=majority"
+//     );
+
+//     // Listen for the connected event
+//     mongoose.connection.on("connected", () => {
+//       console.log("Connected to MongoDB");
+//     });
+
+//     // Listen for the error event
+//     mongoose.connection.on("error", (err) => {
+//       console.error(`MongoDB connection error: ${err}`);
+//     });
+
+//     // Listen for the disconnected event
+//     mongoose.connection.on("disconnected", () => {
+//       console.log("Disconnected from MongoDB");
+//     });
+//   } catch (error) {
+//     console.error(`Error connecting to MongoDB: ${error}`);
+//   }
+// }
+
+// main();
+
+async function main() {
+  try {
+    await mongoose.connect(
+      "mongodb+srv://projectaccount:JQndkpzB9yp3ARgM@cluster0.spd21.mongodb.net/?retryWrites=true&w=majority"
+    );
+
+    if (mongoose.connection.readyState === 1) {
+      console.log("Connected to MongoDB");
+    } else {
+      console.error("Failed to connect to MongoDB");
+    }
+  } catch (error) {
+    console.error(`Error connecting to MongoDB: ${error}`);
+  }
+}
+
+main();
 
 app.set("view engine", "ejs");
 
 // Serve static files from the public folder
 app.use(express.static("views"));
+app.use(express.json());
+app.use(cookieParser());
 
 app.use("/", homePageRouter);
 
@@ -31,10 +81,20 @@ app.use("/upload-image", uploadImageRouter);
 
 app.use("/dashboard", dashboardPageRouter);
 
-// Custom 404 route - placed after all other routes
-app.use((req, res) => {
-  res.render("pages/error");
-});
+// app.get("/set-cookies", (req, res) => {
+//   // res.setHeader("Set-Cookie", "newUser=true");
+
+//   res.cookie("newUser", false);
+//   res.cookie("isEmployee", true);
+//   res.send("You got the cookies");
+// });
+
+// app.get("/read-cookies", () => {});
+
+// // Custom 404 route - placed after all other routes
+// app.use((req, res) => {
+//   res.render("pages/error");
+// });
 
 // Starting the server and listening to specific port
 app.listen(port, () => {

@@ -1,6 +1,36 @@
 // Checking if the DOM is ready
 
 $(document).ready(function () {
+  $("#registrationForm").submit(function (event) {
+    // Prevent the default form submission
+    event.preventDefault();
+
+    // Gather form data
+    var formData = {
+      name: $("#name").val(),
+      email: $("#email").val(),
+      phone: $("#phone").val(),
+      password: $("#password").val(),
+    };
+
+    $.ajax({
+      type: "POST",
+      url: "/register",
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      data: JSON.stringify(formData),
+      success: function (response) {
+        // console.log("Server response:", response);
+        if (response.user) {
+          location.assign("/dashboard");
+        }
+      },
+      error: function (error) {
+        console.error("Error:", error);
+      },
+    });
+  });
+
   // Function to add a new single product
   function addProduct(imageSrc, productName, price, rating) {
     const productHtml = `
