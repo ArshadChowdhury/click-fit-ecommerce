@@ -307,7 +307,7 @@ a {
   flex-direction: column;
   gap: 3rem;
   align-items: center;
-  margin-top: 8rem;
+  padding-top: 8rem;
 }
 
 .other-pages-containers form {

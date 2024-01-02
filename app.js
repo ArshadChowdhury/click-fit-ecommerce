@@ -12,39 +12,11 @@ const dashboardPageRouter = require("./routes/Dashboard");
 // getting-started.js
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
-
-// async function main() {
-//   try {
-//     await mongoose.connect(
-//       "mongodb+srv://projectaccount:JQndkpzB9yp3ARgM@cluster0.spd21.mongodb.net/?retryWrites=true&w=majority"
-//     );
-
-//     // Listen for the connected event
-//     mongoose.connection.on("connected", () => {
-//       console.log("Connected to MongoDB");
-//     });
-
-//     // Listen for the error event
-//     mongoose.connection.on("error", (err) => {
-//       console.error(`MongoDB connection error: ${err}`);
-//     });
-
-//     // Listen for the disconnected event
-//     mongoose.connection.on("disconnected", () => {
-//       console.log("Disconnected from MongoDB");
-//     });
-//   } catch (error) {
-//     console.error(`Error connecting to MongoDB: ${error}`);
-//   }
-// }
-
-// main();
+require("dotenv").config(); // Load environment variables from .env file
 
 async function main() {
   try {
-    await mongoose.connect(
-      "mongodb+srv://projectaccount:JQndkpzB9yp3ARgM@cluster0.spd21.mongodb.net/?retryWrites=true&w=majority"
-    );
+    await mongoose.connect(process.env.MONGODB_URL);
 
     if (mongoose.connection.readyState === 1) {
       console.log("Connected to MongoDB");
