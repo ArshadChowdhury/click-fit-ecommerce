@@ -13,6 +13,23 @@ $(document).ready(function () {
       password: $("#password").val(),
     };
 
+    // // Validate the form data
+    // if (
+    //   !formData.name ||
+    //   !formData.email ||
+    //   !formData.phone ||
+    //   !formData.password
+    // ) {
+    //   // Display an error message or perform any other desired action
+    //   alert("Please enter values for all fields.");
+    //   return;
+    // }
+
+    function displayError(field, message) {
+      // Display error message in the respective span
+      $(`#${field}-error`).text(message);
+    }
+
     $.ajax({
       type: "POST",
       url: "/register",
@@ -20,17 +37,34 @@ $(document).ready(function () {
       dataType: "json",
       data: JSON.stringify(formData),
       success: function (response) {
-        // console.log("Server response:", response);
+        console.log(response);
         if (response.user) {
+          // Redirect to the dashboard after successful registration
           location.assign("/dashboard");
+
+          // Clear form fields
           $("#name").val("");
           $("#email").val("");
           $("#phone").val("");
           $("#password").val("");
         }
       },
+
+      // function (response) {
+      //   // console.log("Server response:", response);
+      //   if (response.user) {
+      //     location.assign("/dashboard");
+      //     $("#name").val("");
+      //     $("#email").val("");
+      //     $("#phone").val("");
+      //     $("#password").val("");
+      //   }
+      // },
       error: function (error) {
-        console.error("Error:", error);
+        displayError("name", error.responseJSON.errors.name);
+        displayError("email", error.responseJSON.errors.email);
+        displayError("phone", error.responseJSON.errors.phone);
+        displayError("password", error.responseJSON.errors.password);
       },
     });
   });

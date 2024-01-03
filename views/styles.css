@@ -334,6 +334,16 @@ a {
   padding: 0.5rem;
 }
 
+.input-error-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.error-fields {
+  color: #bf3131;
+}
+
 @media only screen and (max-width: 1301px) {
   body {
     margin: 0 1rem;

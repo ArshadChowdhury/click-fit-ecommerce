@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 const { createToken } = require("../middleware/createToken");
+const { handleErrors } = require("../middleware/handleErrors");
 
 // Defining a route for the root path
 router.get("/", (req, res) => {
@@ -25,8 +26,8 @@ router.post("/", async (req, res) => {
     });
     res.status(201).json({ user: user._id });
   } catch (err) {
-    console.log(err);
-    res.status(400).send("Error user not created");
+    const errors = handleErrors(err);
+    res.status(400).send({ errors });
   }
 });
 

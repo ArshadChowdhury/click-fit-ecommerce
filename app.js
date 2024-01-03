@@ -11,6 +11,7 @@ const registerPageRouter = require("./routes/Register");
 const dashboardPageRouter = require("./routes/Dashboard");
 const errorPageRouter = require("./routes/Error");
 const logoutPageRouter = require("./routes/Logout");
+const { checkUser } = require("./middleware/authMiddleware");
 
 // getting-started.js
 const mongoose = require("mongoose");
@@ -39,6 +40,8 @@ app.set("view engine", "ejs");
 app.use(express.static("views"));
 app.use(express.json());
 app.use(cookieParser());
+
+app.get("*", checkUser);
 
 app.use("/", homePageRouter);
 
