@@ -12,6 +12,15 @@ const handleErrors = (err) => {
     });
   }
 
+  if (err.message === "This email is not registered") {
+    errors.email = "This email is not registered";
+  }
+
+  if (err.message === "Incorrect email or password") {
+    errors.email = "Incorrect email or password";
+    errors.password = "Incorrect email or password";
+  }
+
   return errors;
 };
 

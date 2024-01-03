@@ -338,10 +338,23 @@ a {
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
+  position: relative;
 }
 
 .error-fields {
   color: #bf3131;
+}
+
+.eye-icon {
+  height: 1.8rem;
+  width: 2rem;
+}
+
+#toggle-password {
+  position: absolute;
+  right: 0;
+  top: 27px;
+  padding: 0 5px;
 }
 
 @media only screen and (max-width: 1301px) {
@@ -366,6 +379,14 @@ a {
 @media only screen and (max-width: 769px) {
   .products {
     grid-template-columns: repeat(1, 1fr);
+  }
+
+  .eye-icon {
+    height: 1.6rem;
+  }
+
+  .other-pages-containers form {
+    width: 100%;
   }
 
   .first-container h1 {

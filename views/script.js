@@ -1,6 +1,11 @@
 // Checking if the DOM is ready
 
 $(document).ready(function () {
+  function displayError(field, message) {
+    // Display error message in the respective span
+    $(`#${field}-error`).text(message);
+  }
+
   $("#registrationForm").submit(function (event) {
     // Prevent the default form submission
     event.preventDefault();
@@ -25,11 +30,6 @@ $(document).ready(function () {
     //   return;
     // }
 
-    function displayError(field, message) {
-      // Display error message in the respective span
-      $(`#${field}-error`).text(message);
-    }
-
     $.ajax({
       type: "POST",
       url: "/register",
@@ -37,7 +37,6 @@ $(document).ready(function () {
       dataType: "json",
       data: JSON.stringify(formData),
       success: function (response) {
-        console.log(response);
         if (response.user) {
           // Redirect to the dashboard after successful registration
           location.assign("/dashboard");
@@ -49,17 +48,6 @@ $(document).ready(function () {
           $("#password").val("");
         }
       },
-
-      // function (response) {
-      //   // console.log("Server response:", response);
-      //   if (response.user) {
-      //     location.assign("/dashboard");
-      //     $("#name").val("");
-      //     $("#email").val("");
-      //     $("#phone").val("");
-      //     $("#password").val("");
-      //   }
-      // },
       error: function (error) {
         displayError("name", error.responseJSON.errors.name);
         displayError("email", error.responseJSON.errors.email);
@@ -94,9 +82,22 @@ $(document).ready(function () {
         }
       },
       error: function (error) {
-        console.error("Error:", error);
+        console.log(error);
+        displayError("email", error.responseJSON.errors.email);
+        displayError("password", error.responseJSON.errors.password);
       },
     });
+  });
+
+  $("#toggle-password").on("click", function () {
+    var passwordField = $("#password");
+    var fieldType = passwordField.attr("type");
+
+    if (fieldType === "password") {
+      passwordField.attr("type", "text");
+    } else {
+      passwordField.attr("type", "password");
+    }
   });
 
   // Function to add a new single product
