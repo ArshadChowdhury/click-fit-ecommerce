@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 3000; // Setting the port I want my app to run
+const port = 4000; // Setting the port I want my app to run
 const homePageRouter = require("./routes/Homepage");
 const uploadImageRouter = require("./routes/UploadImage");
 const aboutPageRouter = require("./routes/About");

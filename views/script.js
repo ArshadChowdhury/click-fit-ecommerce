@@ -18,17 +18,24 @@ $(document).ready(function () {
       password: $("#password").val(),
     };
 
-    // // Validate the form data
-    // if (
-    //   !formData.name ||
-    //   !formData.email ||
-    //   !formData.phone ||
-    //   !formData.password
-    // ) {
-    //   // Display an error message or perform any other desired action
-    //   alert("Please enter values for all fields.");
-    //   return;
-    // }
+    // Validate the form data
+    switch (false) {
+      case !!formData.name:
+        displayError("name", "Please enter your name.");
+        return;
+
+      case !!formData.email:
+        displayError("email", "Please enter your email address.");
+        return;
+
+      case !!formData.password:
+        displayError("password", "Please enter your password.");
+        return;
+
+      default:
+      // If all fields are filled, continue with your logic.
+      // ...
+    }
 
     $.ajax({
       type: "POST",
@@ -66,6 +73,21 @@ $(document).ready(function () {
       email: $("#email").val(),
       password: $("#password").val(),
     };
+
+    // Validate the form data
+    switch (false) {
+      case !!formData.email:
+        displayError("email", "Please enter your email address.");
+        return;
+
+      case !!formData.password:
+        displayError("password", "Please enter your password.");
+        return;
+
+      default:
+      // If all fields are filled, continue with your logic.
+      // ...
+    }
 
     $.ajax({
       type: "POST",
