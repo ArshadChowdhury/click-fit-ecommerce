@@ -6,35 +6,60 @@ $(document).ready(function () {
     $(`#${field}-error`).text(message);
   }
 
+  // Function to validate email using regular expression
+  function isValidEmail(email) {
+    // Regular expression for a simple email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
   $("#registrationForm").submit(function (event) {
     // Prevent the default form submission
     event.preventDefault();
 
     // Gather form data
-    var formData = {
+    const formData = {
       name: $("#name").val(),
       email: $("#email").val(),
       phone: $("#phone").val(),
       password: $("#password").val(),
     };
 
-    // Validate the form data
-    switch (false) {
-      case !!formData.name:
-        displayError("name", "Please enter your name.");
-        return;
+    // Validate the form data for each field
+    if (!formData.name) {
+      displayError("name", "Please enter your full name");
+      return;
+    } else if (formData.name.length <= 5) {
+      displayError("name", "Full name must be at least 6 characters"); // Clear error message
+    } else {
+      displayError("name", ""); // Clear error message
+    }
 
-      case !!formData.email:
-        displayError("email", "Please enter your email address.");
-        return;
+    if (!formData.email) {
+      displayError("email", "Please enter your email address");
+      return;
+    } else if (!isValidEmail(formData.email)) {
+      displayError("email", "Please enter a valid email address");
+      return;
+    } else {
+      displayError("email", ""); // Clear error message
+    }
 
-      case !!formData.password:
-        displayError("password", "Please enter your password.");
-        return;
+    if (!formData.phone) {
+      displayError("phone", "Please enter your phone number");
+      return;
+    } else {
+      displayError("phone", ""); // Clear error message
+    }
 
-      default:
-      // If all fields are filled, continue with your logic.
-      // ...
+    if (!formData.password) {
+      displayError("password", "Please enter your password");
+      return;
+    } else if (formData.password.length <= 5) {
+      displayError("password", "Password must be at least 6 characters");
+      return;
+    } else {
+      displayError("password", ""); // Clear error message
     }
 
     $.ajax({
@@ -69,24 +94,26 @@ $(document).ready(function () {
     event.preventDefault();
 
     // Gather form data
-    var formData = {
+    const formData = {
       email: $("#email").val(),
       password: $("#password").val(),
     };
 
-    // Validate the form data
-    switch (false) {
-      case !!formData.email:
-        displayError("email", "Please enter your email address.");
-        return;
+    if (!formData.email) {
+      displayError("email", "Please enter your email address");
+      return;
+    } else if (!isValidEmail(formData.email)) {
+      displayError("email", "Please enter a valid email address");
+      return;
+    } else {
+      displayError("email", ""); // Clear error message
+    }
 
-      case !!formData.password:
-        displayError("password", "Please enter your password.");
-        return;
-
-      default:
-      // If all fields are filled, continue with your logic.
-      // ...
+    if (!formData.password) {
+      displayError("password", "Please enter your password");
+      return;
+    } else {
+      displayError("password", ""); // Clear error message
     }
 
     $.ajax({
@@ -112,8 +139,8 @@ $(document).ready(function () {
   });
 
   $("#toggle-password").on("click", function () {
-    var passwordField = $("#password");
-    var fieldType = passwordField.attr("type");
+    const passwordField = $("#password");
+    const fieldType = passwordField.attr("type");
 
     if (fieldType === "password") {
       passwordField.attr("type", "text");
